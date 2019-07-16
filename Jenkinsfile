@@ -1,7 +1,5 @@
 pipeline {
     agent any
-    //tools {
-    //   maven "Maven 3.6.1"
     stages {
         stage('Build') {
             steps {
@@ -18,11 +16,11 @@ pipeline {
                 nexusArtifactUploader(
                         nexusVersion: 'nexus2',
                         protocol: 'http',
-                        nexusUrl: '172.17.0.3:8081/nexus',
+                        nexusUrl: '172.21.0.3:8081',
                         groupId: 'org.springframework.samples',
                         version: '2.1.0.BUILD-SNAPSHOT',
-                        repository: 'jenkins',
-                        credentialsId: 'nexus_dp',
+                        repository: 'pets',
+                        credentialsId: 'deploy_to_nexus',
                         artifacts: [
                                 [artifactId: 'spring-petclinic',
                                  classifier: '',
